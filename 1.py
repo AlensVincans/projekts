@@ -72,7 +72,6 @@ def start_window():
 
     start_window.mainloop()
 
-# Настройка веб-драйвера и Excel
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(options=chrome_options)
@@ -85,7 +84,6 @@ except FileNotFoundError:
     workbook = Workbook()
     sheet = workbook.active
 
-# Запуск начального окна
 start_window()
 
 driver.quit()

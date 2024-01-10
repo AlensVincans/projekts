@@ -12,14 +12,12 @@ from urllib.request import urlopen
 import re
 
 def fetch_and_display():
-    global panels, driver, wait, mode  # Add 'mode' to the global variables
+    global panels, driver, wait, mode 
 
-    # Close panels from previous session if any
     for panel in panels:
         panel.destroy()
     panels.clear()
 
-    # Click the 'Reroll' button
     wait.until(EC.element_to_be_clickable((By.ID, "stcky"))).click()
 
     perk_texts = []
@@ -44,8 +42,8 @@ def fetch_and_display():
 
     for i, text in enumerate(perk_texts):
         sheet.cell(row=start_row, column=i+1, value=text)
-    sheet.cell(row=start_row, column=5, value=mode)  # Record 'Survivor' or 'Killer' in the 5th column
-    sheet.cell(row=start_row, column=6, value=current_time)  # Record the current time in the 6th column
+    sheet.cell(row=start_row, column=5, value=mode) 
+    sheet.cell(row=start_row, column=6, value=current_time)
 
     workbook.save(excel_file)
 
@@ -57,11 +55,10 @@ def fetch_and_display():
         panels.append(panel)
 
 def init_mode(selected_mode):
-    global driver, wait, mode  # Add 'mode' to the global variables
+    global driver, wait, mode
 
-    mode = selected_mode  # Set the mode based on the selected option
+    mode = selected_mode
 
-    # Hide main menu buttons and show reroll/back buttons
     hide_main_menu()
     show_reroll_back()
 
@@ -71,7 +68,6 @@ def init_mode(selected_mode):
     wait = WebDriverWait(driver, 10)
     driver.get("https://verewygt.github.io/perkroulette/")
 
-    # Click the appropriate label based on the mode
     if mode == "Survivor":
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "label[for='surv']"))).click()
     elif mode == "Killer":
@@ -82,17 +78,14 @@ def init_mode(selected_mode):
 def back_to_menu():
     global driver
 
-    # Clear existing images (if any)
     for panel in panels:
         panel.destroy()
     panels.clear()
 
-    # Quit the driver and clean up
     if 'driver' in globals():
         driver.quit()
         del driver
 
-    # Hide reroll/back buttons and show main menu
     hide_reroll_back()
     show_main_menu()
 
@@ -112,20 +105,16 @@ def show_reroll_back():
     reroll_button.pack(side="bottom", pady=10)
     back_button.pack(side="bottom", pady=10)
 
-# Initialization of tkinter GUI
 root = tk.Tk()
 root.title("DBD Perks")
 panels = []
 
-# Main menu buttons
 survivor_button = tk.Button(root, text="Survivor", command=lambda: init_mode("Survivor"))
 killer_button = tk.Button(root, text="Killer", command=lambda: init_mode("Killer"))
 
-# Reroll and back buttons
 reroll_button = tk.Button(root, text="Reroll", command=fetch_and_display)
 back_button = tk.Button(root, text="Back", command=back_to_menu)
 
-# Excel file setup
 excel_file = 'dbdperks.xlsx'
 try:
     workbook = load_workbook(excel_file)
