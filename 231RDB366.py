@@ -25,10 +25,10 @@ def fetch_and_display():
 
     perk_texts = []
     perk_images = []
+
     for i in range(4):
         text_element = wait.until(EC.visibility_of_element_located((By.ID, f"pn{i}")))
         perk_texts.append(text_element.text)
-
         image_element = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, f"div.perk_icon#pi{i}")))
         style = image_element.get_attribute('style')
         image_url = re.search(r'url\("(.+?)"\)', style).group(1)
@@ -38,6 +38,7 @@ def fetch_and_display():
 
     current_time = datetime.now().strftime("%d-%m-%Y | %H:%M")
     max_row = sheet.max_row
+
     if all(sheet.cell(row=max_row, column=i+1).value is None for i in range(6)):
         start_row = max_row
     else:
@@ -55,6 +56,7 @@ def fetch_and_display():
         panel.image = tk_image
         panel.pack(side="left", padx=10, pady=10)
         panels.append(panel)
+
 
 def init_valorant_agents_mode():
     global driver, wait, mode
@@ -75,6 +77,7 @@ def init_valorant_agents_mode():
     driver.get("https://www.valorantpicker.com/#/")
 
     fetch_valorant_agent()
+
 
 def fetch_valorant_agent():
     global panels, driver, wait
@@ -170,7 +173,7 @@ def show_reroll_back():
     back_button.pack(side="bottom", pady=10)
 
 root = tk.Tk()
-root.title("Game Randomizer")
+root.title("Ingame Randomizer")
 panels = []
 
 survivor_button = tk.Button(root, text="Survivor", command=lambda: init_mode("Survivor"))

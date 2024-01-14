@@ -20,4 +20,4 @@ Projekts sastāv no vairākām galvenajām funkcijām:
 5. GUI funkcijas: Nodrošina lietotāja mijiedarbību ar programmatūru.
 
 ## Izmantošanas Piemēri
-Lietotāji var izvēlēties starp dažādiem režīmiem, piemēram, "Survivor", "Killer", vai "Valorant Agents". Katrā režīmā programma nodrošina atbilstošas funkcionalitātes, piemēram, spēļu varoņu vai spēju izgūšanu un attēlošanu. Kā arī ieraksts Excel failā, ziņošanai un atlases tīrībai, kur var redzēt, kas tiek izvadīts pirms tam.
+Lietotāji var izvēlēties starp dažādiem režīmiem, piemēram, "Survivor", "Killer", vai "Valorant Agents". Katrā režīmā programma nodrošina atbilstošas funkcionalitātes, piemēram, spēļu varoņu vai spēju izgūšanu un attēlošanu. Kā arī ieraksts Excel failā, ziņošanai un atlases tīrībai, kur var redzēt vesture, kas tiek izvadīts pirms tam.
